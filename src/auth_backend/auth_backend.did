@@ -1,0 +1,11 @@
+type DeleteResult = variant { NotFound; NotAuthorized; Success };
+service : {
+  delete_image : (nat64) -> (DeleteResult);
+  get_all_images : (opt nat64) -> (
+      vec record { nat64; text; text; blob },
+    ) query;
+  get_image : (nat64) -> (opt blob) query;
+  set_name : (text) -> ();
+  upload_image : (text, blob) -> (nat64);
+  whoami : () -> (principal) query;
+}
